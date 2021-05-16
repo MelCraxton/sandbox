@@ -1,4 +1,5 @@
---create inital tables for data population
+--this was done to create inital tables for data population
+-- these are the main tables used in the course project
 
 CREATE TABLE forest_area
 	(
