@@ -27,3 +27,14 @@ CREATE TABLE regions
 	income_group VARCHAR (50),
 	region VARCHAR (50)		
 	);
+
+-- fix mismatched columns
+
+ALTER TABLE region
+RENAME COLUMN income_group TO regions;
+
+ALTER TABLE region
+RENAME COLUMN region TO income_group;
+
+ALTER TABLE regions
+RENAME COLUMN regions TO region;
