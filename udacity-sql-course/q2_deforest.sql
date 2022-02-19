@@ -1,7 +1,7 @@
 --In 1990, the percent of the total land area of the world designated as forest was 32.42%. 
 --The region with the highest relative forestation was Latin America and Caribbean with 51.03%, 
 -- The region with the lowest relative forestation was Middle East and North Africa, with 1.78% 
-forestation.
+-- forestation.
 
 WITH t1 AS
 (SELECT
