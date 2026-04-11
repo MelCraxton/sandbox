@@ -1,8 +1,8 @@
 # This is needed just becuase of the computer security
 import os
-os.environ['GRPC_DEFAULT_SSL_ROOTS_FILE_PATH'] = '/tmp/corp-ca-bundle.pem'
-os.environ['SSL_CERT_FILE'] = '/tmp/corp-ca-bundle.pem'
-os.environ['REQUESTS_CA_BUNDLE'] = '/tmp/corp-ca-bundle.pem'
+os.environ['GRPC_DEFAULT_SSL_ROOTS_FILE_PATH'] = os.path.expanduser('~/.ssl/combined-ca-bundle.pem')
+os.environ['SSL_CERT_FILE'] = os.path.expanduser('~/.ssl/combined-ca-bundle.pem')
+os.environ['REQUESTS_CA_BUNDLE'] = os.path.expanduser('~/.ssl/combined-ca-bundle.pem')
 
 # Libraries 
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -13,7 +13,7 @@ from langchain.agents import create_agent
 from pathlib import Path
 
 # This is needed just becuase of the computer security
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+load_dotenv(Path(__file__).resolve().parent / '.env')
 
 # Usually just need
 # load_dotenv()
@@ -32,6 +32,7 @@ def get_location():
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
     temperature = 0.7,
+    google_api_key=os.environ.get("GOOGLE_API_KEY"),
     # This is needed just becuase of the computer security
     transport="rest",
 )
@@ -59,4 +60,4 @@ response = agent.invoke(
     {'messages':[{'role': 'user', 
                   'content':user_query}]})
 
-print(response['messages'][-1].content[0]['text'])
+print(response['messages'][-1].content)
